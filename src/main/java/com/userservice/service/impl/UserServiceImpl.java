@@ -5,6 +5,7 @@ import com.userservice.dto.*;
 import com.userservice.dto.request.UserLoginDTO;
 import com.userservice.dto.request.UserRegistrationDTO;
 import com.userservice.dto.request.UserUpdateDTO;
+import com.userservice.dto.response.LoginUser;
 import com.userservice.dto.response.RestApiResponse;
 import com.userservice.dto.response.UserProfile;
 import com.userservice.model.User;
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
             log.info("Login request completed for refId {}", refId);
             return new ResponseEntity<>(RestApiResponse.builder().responseCode(ResponseConstant.GENERIC_REQUEST_SUCCESS)
-                    .data(token)
+                    .data(LoginUser.builder().userId(user.getId()).token(token).build())
                     .refId(refId).build(), HttpStatus.OK);
         }
         catch (Exception ex){
