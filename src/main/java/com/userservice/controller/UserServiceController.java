@@ -29,21 +29,21 @@ public class UserServiceController {
     }
 
     @PostMapping(value = "/users")
-    public Object userLogin(@RequestBody UserRegistrationDTO userRegistrationDto) {
+    public Object userReg(@RequestBody UserRegistrationDTO userRegistrationDto) {
         String refId = utility.generateUUID("USERREG");
         log.info("User registration flow started {} for refId {}", userRegistrationDto.toString(), refId);
         return userService.userRegistration(userRegistrationDto, refId);
     }
 
     @GetMapping(value = "/users/{id}")
-    public ResponseEntity<RestApiResponse> userLogin(@PathVariable Integer id) {
+    public ResponseEntity<RestApiResponse> getUser(@PathVariable Integer id) {
         String refId = utility.generateUUID("GET_USER");
         log.info("Get User flow started {} for refId {}", id, refId);
         return userService.getUser(id, refId);
     }
 
     @PutMapping(value = "/users/{id}")
-    public ResponseEntity<RestApiResponse> userLogin(@PathVariable Integer id, @RequestBody UserUpdateDTO userUpdateDTO) {
+    public ResponseEntity<RestApiResponse> updateUser(@PathVariable Integer id, @RequestBody UserUpdateDTO userUpdateDTO) {
         String refId = utility.generateUUID("USERREG");
         log.info("User registration flow started {} for refId {}", userUpdateDTO.toString(), refId);
         return userService.updateUser(id, userUpdateDTO, refId);
